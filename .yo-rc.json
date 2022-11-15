@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.15.2",
+    "libraryName": "survey",
+    "libraryId": "702d82fa-46c8-4b35-a40a-7c10a5ed224f",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "survey",
+    "solutionShortDescription": "survey description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
