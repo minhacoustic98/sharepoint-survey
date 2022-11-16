@@ -44,8 +44,7 @@ export default class Survey extends React.Component<
       });
       this.setState({ isViewResponse: true, myList: updatedList });
     } else {
-      this.setState({ isViewResponse: false, myQuestions: data});
-      console.log(this.state.myQuestions);
+      this.setState({ isViewResponse: false, myQuestions: data });
     }
   }
 
@@ -103,19 +102,17 @@ export default class Survey extends React.Component<
           isViewResponse={this.state.isViewResponse}
           handleClick={this.handleClick}
         />
-        {this.state.isViewResponse && this.state.isDisplay
-         && (
-          <AnsweredList
-           items={this.state.myList}
-            owner={userDisplayName} />
+        {this.state.isViewResponse && this.state.isDisplay && (
+          <AnsweredList items={this.state.myList} owner={userDisplayName} />
         )}
 
-        {!this.state.isViewResponse
-         && this.state.isDisplay
-        && <SurveyQuestion 
-        items={this.state.myQuestions}
-        />}
-        
+        {!this.state.isViewResponse && this.state.isDisplay && (
+          <SurveyQuestion 
+          items={this.state.myQuestions}
+           userId = {this.state.userId} 
+           userDisplay = {userDisplayName}
+           />
+        )}
       </section>
     );
   }

@@ -26,7 +26,7 @@ export interface IAnsweredItem {
   Title: string;
   UsernameId: number;
   Question: string;
-  Answer: string;
+  Answer: string | string[];
   Created: Date;
   Modified: Date;
 }
@@ -35,7 +35,7 @@ export class AnsweredItem implements IAnsweredItem {
   Title: string;
   UsernameId: number;
   Question: string;
-  Answer: string;
+  Answer: string | string[];
   UserDisplayName: string;
   Created: Date;
   Modified: Date;
@@ -80,4 +80,6 @@ export interface Question {
 
 export interface ISurveyQuestionProps {
   items: Question[];
+  userId: number;
+  userDisplay: string;
 }

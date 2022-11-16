@@ -11,4 +11,12 @@ export interface ISurveyState {
 
 export interface ISurveyQuestionState {
   items: AnsweredItem[];
+  isCompleted: boolean;
+  currentQuestion: number;
+  isSkip: boolean;
+}
+
+export interface ICheckboxState {
+  id: number;
+  value: string;
 }
