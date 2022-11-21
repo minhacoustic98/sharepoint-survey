@@ -14,6 +14,8 @@ export interface ISurveyQuestionState {
   isCompleted: boolean;
   currentQuestion: number;
   isSkip: boolean;
+  yearDiff: number;
+  monthDiff: number;
 }
 
 export interface ICheckboxState {

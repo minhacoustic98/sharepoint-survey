@@ -27,8 +27,8 @@ export interface IAnsweredItem {
   UsernameId: number;
   Question: string;
   Answer: string | string[];
-  Created: Date;
-  Modified: Date;
+  Created: string;
+  Modified: string;
 }
 
 export class AnsweredItem implements IAnsweredItem {
@@ -37,8 +37,8 @@ export class AnsweredItem implements IAnsweredItem {
   Question: string;
   Answer: string | string[];
   UserDisplayName: string;
-  Created: Date;
-  Modified: Date;
+  Created: string;
+  Modified: string;
 
   constructor(answer: IAnsweredItem) {
     this.Title = answer.Title;
@@ -82,4 +82,5 @@ export interface ISurveyQuestionProps {
   items: Question[];
   userId: number;
   userDisplay: string;
+  newRecord: Function;
 }

@@ -21,7 +21,6 @@ interface IStarProp {
         styles.star + ' ' + styles.selected :
           (this.props.potentialRate >= this.props.val) ?
           styles.star + ' ' +styles.potentialSelect : styles.star;
-      console.log(cl);
       return cl;
     }
     render() : React.ReactElement {

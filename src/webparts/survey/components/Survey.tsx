@@ -33,6 +33,10 @@ export default class Survey extends React.Component<
   }
 
   async componentDidMount(): Promise<void> {
+    await this._init();
+  }
+
+  private async _init() {
     await this._getAnsweredList();
     await this._getCurrentUser();
     const filteredList = this.state.answeredList.filter(
@@ -47,7 +51,6 @@ export default class Survey extends React.Component<
       this.setState({ isViewResponse: false, myQuestions: data });
     }
   }
-
   private _getAnsweredList = async (): Promise<void> => {
     const spCache = spfi(this._sp);
 
@@ -78,6 +81,28 @@ export default class Survey extends React.Component<
   public handleClick = () => {
     this.setState({ isDisplay: !this.state.isDisplay });
   };
+
+  handleCreateRecordAsync = async (newRecord: AnsweredItem[]) => {
+    const sp = spfi(this._sp);
+    try {
+      newRecord.forEach(async (record, index) => {
+        await sp.web.lists.getByTitle(this.SOURCE_NAME).items.add({
+          'Title': 'Question ' + (index +1),
+          'UsernameId': record.UsernameId,
+          'Question': 'Question ' + (index +1),
+          'Answer': record.Answer,
+        });
+      }); 
+     
+    } catch (e) {
+      console.log(e);
+    } finally
+    {
+      setTimeout(async () => {
+        await this._init();
+      }, 1000); 
+    }
+  };
   public render(): React.ReactElement<ISurveyProps> {
     const {
       description,
@@ -107,11 +132,12 @@ export default class Survey extends React.Component<
         )}
 
         {!this.state.isViewResponse && this.state.isDisplay && (
-          <SurveyQuestion 
-          items={this.state.myQuestions}
-           userId = {this.state.userId} 
-           userDisplay = {userDisplayName}
-           />
+          <SurveyQuestion
+            items={this.state.myQuestions}
+            userId={this.state.userId}
+            userDisplay={userDisplayName}
+            newRecord={this.handleCreateRecordAsync}
+          />
         )}
       </section>
     );

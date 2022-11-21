@@ -1,16 +1,17 @@
 import * as React from "react";
 import { Star } from '../star/Star';
 
-interface AppProps {
+interface RatingProps {
     starCount: number;
+    rateValue: Function;
   }
-  interface AppState {
+  interface RatingState {
     rate: number;
     potentialRate?: number;
   }
 
-export class Rating extends React.Component<AppProps, AppState> {  
-    constructor(props: AppProps) {
+export class Rating extends React.Component<RatingProps, RatingState> {  
+    constructor(props: RatingProps) {
       super(props);
       this.state = {
         rate: 0,
@@ -21,6 +22,7 @@ export class Rating extends React.Component<AppProps, AppState> {
     setRate(rate:number): void {
       if (!this.state.rate) {
         this.setState({ rate: rate });
+        this.props.rateValue(rate);
       }
     }
   
@@ -31,9 +33,7 @@ export class Rating extends React.Component<AppProps, AppState> {
     }
   
     reset(): void {
-      this.setState({ rate: 0 });
-      
-      
+      this.setState({ rate: 0 }); 
     }
   
     render() {

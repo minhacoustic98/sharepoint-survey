@@ -1,14 +1,14 @@
+import * as moment from "moment";
 import * as React from "react";
 import { IAnsweredList } from "../ISurveyProps";
 import styles from "../Survey.module.scss";
-
 export default class AnsweredList extends React.Component<IAnsweredList> {
   public render(): React.ReactElement {
     const { owner, items } = this.props;
     return (
       <div className={styles.tableOutline}>
         <label>List anwsered by {owner}: </label>
-        <table width="100%" className={styles.tableContent}>
+        <table width="100%" className="table table-striped ">
           <thead>
             <tr>
               <th>No.</th>
@@ -29,8 +29,8 @@ export default class AnsweredList extends React.Component<IAnsweredList> {
                   <td>{item.UserDisplayName}</td>
                   <td>{item.Question}</td>
                   <td>{item.Answer}</td>
-                  <td>{item.Created}</td>
-                  <td>{item.Modified}</td>
+                  <td>{moment(item.Created).format("DD/MM/YYYY")}</td>
+                  <td>{moment(item.Modified).format("DD/MM/YYYY")}</td>
                 </tr>
               );
             })}

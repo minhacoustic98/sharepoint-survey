@@ -13,6 +13,7 @@ export default class Clock extends React.Component<any, any> {
     }, 1000);
   }
 
+  
   componentWillUnmount(): void {
     clearInterval(this.update);
   }
